@@ -1,0 +1,35 @@
+version: '3.8'
+
+networks:
+  mysqlnet:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:9
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - mysqlnet
+    volumes:
+      - /home/ubuntu/docker_mysql:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    networks:
+      - mysqlnet
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PMA_ROOT_PASSWORD}
+      PMA_HOST: mysql
+
+networks:
+  mysqlnet:
+    external: true
