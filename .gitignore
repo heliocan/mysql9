@@ -1,0 +1,14 @@
+# Ignorar diretórios e arquivos de configuração do PyCharm (JetBrains)
+.idea/
+*.iml
+
+# Ignorar arquivos .env
+.env
+
+# Ignorar logs e outros arquivos desnecessários
+*.log
+
+# Ignorar diretórios de build e cache comuns
+__pycache__/
+*.pyc
+.DS_Store
